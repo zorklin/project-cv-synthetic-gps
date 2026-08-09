@@ -86,6 +86,7 @@ export PROJECT_CV_RAW_BAG='${raw_runtime}'
 export PROJECT_CV_DERIVED_BAG='${derived_runtime}'
 export PROJECT_CV_CALIBRATION='${calibration_runtime}'
 export PROJECT_CV_ARTIFACTS='${artifacts_runtime}'
+export PYTHONPATH='${source_root}/src':"\${PYTHONPATH:-}"
 EOF
 
 echo "Runtime prepared at ${runtime_root}"
