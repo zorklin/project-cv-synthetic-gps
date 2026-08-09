@@ -26,6 +26,11 @@
 - `03_fusion_diagnostics.ipynb` — read-only аналіз уже створених
   `fusion_v1` артефактів: похибки XY/висоти, Starlink outliers/stale fixes,
   timing і використання vision factors. GTSAM повторно не запускає.
+- `04_height_experiments.ipynb` — відтворюваний, baseline-preserving етап
+  дослідження висоти: будує causal barometer diagnostics для legacy та
+  `raw_start_reset`, а з `RUN_GTSAM=False` безпечно повторно використовує
+  завершений corrected run. Явний повний запуск дозволений лише в порожню
+  output-папку; dense GPS використовується тільки для порівняльних метрик.
 - `opticalflow_sparse_noised_gps_fusion_v1(1).ipynb` — незмінний Colab-референс
   викладача з історичними outputs та upstream raw→LK→velocity експериментами.
   Локально його не слід запускати через `Run All`.
@@ -38,6 +43,24 @@
 - `preprocessing_validation.py` — потокова read-only звірка з golden MCAP:
   topics, типи, counts, 18-польова flow-схема, timestamps, frame та числові
   значення.
+- `height_experiments.py` — causal median→mean→IIR, точне відтворення
+  legacy barometer alignment, виправлений `raw-at-start/filter-reset` варіант
+  і diagnostic-only оцінювання висоти у двох режимах часу. GTSAM цей модуль
+  не запускає.
+- `fusion_experiment_runner.py` — hash-locked runner: читає зафіксовану
+  `gtsam-fusion` клітинку з `02`, застосовує одну контрольовану AST-зміну
+  та пише кожен повний запуск у нову ізольовану папку. Його CLI окремо
+  підтримує `legacy_replay`, `no_p0_realign` і `raw_start_reset`.
+
+`src/project_cv/__pycache__/` — автоматично згенерований Python bytecode cache.
+Він не є частиною алгоритму, безпечно перебудовується Python і вже ігнорується
+через `.gitignore` разом із `*.pyc`.
+
+### Контрольні файли в корені
+
+- `SHA256SUMS` — зафіксовані SHA-256 immutable MCAP, metadata та calibration.
+- `.gitignore` — не дозволяє випадково додати великі MCAP, artifacts, Jupyter
+  checkpoints і Python cache до Git.
 
 ### `calibration/`
 
@@ -69,6 +92,31 @@ reference. Усі нові CSV/NPZ/JSON/PNG/MCAP зберігаються тіл
 - `preprocess_v1/` — повний preprocessing і `generated_with_velocity/`;
 - `fusion_v1/` — baseline fusion;
 - `fusion_v1/diagnostics/` — read-only діагностика baseline.
+- `height_experiments_v1/baro_alignment_v1/raw_start_reset/gtsam/` — стабільний
+  corrected run, який повторно використовує `04`; його diagnostic/comparison
+  CSV/JSON/PNG лежать у сусідніх `baro_alignment_v1/diagnostic/` та
+  `baro_alignment_v1/comparison/`;
+- `height_experiments_v1/<UTC>_<variant>/gtsam/` — стандартний ізольований
+  output CLI runner: fusion CSV/JSON, точний `baro_graph_input.csv`, manifest
+  із hashes/параметрами та stdout log.
+
+Dense GPS у нових height-метриках є diagnostic-only reference і не додається
+як factor. Водночас перші експерименти навмисно успадковують baseline
+origin/calibration/p0/v0; deployment-pure варіант буде окремим етапом.
+
+### Перевірка immutable входів
+
+Після копіювання даних або перед серією експериментів перевір hashes у WSL:
+
+```bash
+source /home/fedor/project_cv_runtime/paths.env
+cd "$PROJECT_CV_SOURCE"
+sha256sum --check SHA256SUMS
+```
+
+Усі рядки мають завершитися `OK`. Metadata `02_sparse_gps_fusion.ipynb`
+окремо зберігає історичний `source_sha256_at_migration` і поточний
+`tracked_reference_sha256`, тому ці два різні стани більше не плутаються.
 
 ## Локальне середовище
 
@@ -100,6 +148,11 @@ powershell -ExecutionPolicy Bypass -File .\environment\windows\jupyter.ps1 start
    validation він навмисно використовує teacher-derived bag.
 4. `03_fusion_diagnostics.ipynb` — зафіксувати baseline-помилки до будь-яких
    змін висотного каналу чи factor graph.
+5. `04_height_experiments.ipynb` — залишити `RUN_GTSAM=False`, побудувати
+   barometer-only diagnostics і звірити вже завершений `raw_start_reset`.
+   Встановлювати `RUN_GTSAM=True` лише для явного запуску corrected variant
+   у порожню output-папку; dry-run трьох CLI-варіантів виконується окремо
+   через `fusion_experiment_runner.py`.
 
 Поточний preprocessing відтворює legacy-математику, включно з явно
 задокументованими сумнівними припущеннями. Їх виправлення є наступним
