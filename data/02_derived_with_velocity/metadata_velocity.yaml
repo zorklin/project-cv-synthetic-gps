@@ -1,0 +1,134 @@
+rosbag2_bagfile_information:
+  compression_format: ''
+  compression_mode: ''
+  custom_data: null
+  duration:
+    nanoseconds: 1283767577607
+  files:
+  - duration:
+      nanoseconds: 1283767577607
+    message_count: 790914
+    path: K2R00005_20260607_194949_with_velocity.mcap
+    starting_time:
+      nanoseconds_since_epoch: 1780850989877460379
+  message_count: 790914
+  relative_file_paths:
+  - K2R00005_20260607_194949_with_velocity.mcap
+  ros_distro: rosbags
+  starting_time:
+    nanoseconds_since_epoch: 1780850989877460379
+  storage_identifier: mcap
+  topics_with_message_count:
+  - message_count: 256733
+    topic_metadata:
+      name: /imu/data_raw
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/Imu
+      type_description_hash: 
+        RIHS01_7d9a00ff131080897a5ec7e26e315954b8eae3353c3f995c55faf71574000b5b
+  - message_count: 1197
+    topic_metadata:
+      name: /device/xps_sdl
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: std_msgs/msg/String
+      type_description_hash: 
+        RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+  - message_count: 256730
+    topic_metadata:
+      name: /imu/euler
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: geometry_msgs/msg/Vector3Stamped
+      type_description_hash: 
+        RIHS01_d4829622288cbb443886e7ea94ea5671a3b1be6bab4ad04224432a65f7d7887a
+  - message_count: 11927
+    topic_metadata:
+      name: /mavros/rangefinder/rangefinder
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/Range
+      type_description_hash: 
+        RIHS01_9430b1915b94d4268ff903679e8ecd09b6a67d331bd028738ec1eeb592891ebd
+  - message_count: 76966
+    topic_metadata:
+      name: /vision/lk_flow_px_filtered
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: std_msgs/msg/Float64MultiArray
+      type_description_hash: 
+        RIHS01_1025ddc6b9552d191f89ef1a8d2f60f3d373e28b283d8891ddcc974e8c55397f
+  - message_count: 11918
+    topic_metadata:
+      name: /mavros/imu/static_pressure
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/FluidPressure
+      type_description_hash: 
+        RIHS01_22dfb2b145a0bd5a31a1ac3882a1b32148b51d9b2f3bab250290d66f3595bc32
+  - message_count: 11918
+    topic_metadata:
+      name: /imu/pure_baro_alt
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: std_msgs/msg/Float64
+      type_description_hash: 
+        RIHS01_705ba9c3d1a09df43737eb67095534de36fd426c0587779bda2bc51fe790182a
+  - message_count: 11917
+    topic_metadata:
+      name: /mavros/global_position/raw/fix
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: 
+        RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 76967
+    topic_metadata:
+      name: /camera/image_raw/compressed
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/CompressedImage
+      type_description_hash: 
+        RIHS01_15640771531571185e2efc8a100baf923961a4d15d5569652e6cb6691e8e371a
+  - message_count: 5438
+    topic_metadata:
+      name: /device/xps/fix
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: 
+        RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 0
+    topic_metadata:
+      name: /camera/image_raw
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/Image
+      type_description_hash: 
+        RIHS01_d31d41a9a4c4bc8eae9be757b0beed306564f7526c88ea6a4588fb9582527d47
+  - message_count: 9202
+    topic_metadata:
+      name: /device/gps/raw
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: 
+        RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 142
+    topic_metadata:
+      name: /device/starlink/raw
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: sensor_msgs/msg/NavSatFix
+      type_description_hash: 
+        RIHS01_62223ab3fe210a15976021da7afddc9e200dc9ec75231c1b6a557fc598a65404
+  - message_count: 59859
+    topic_metadata:
+      name: /vision/velocity_frd
+      offered_qos_profiles: ''
+      serialization_format: cdr
+      type: geometry_msgs/msg/TwistStamped
+      type_description_hash: 
+        RIHS01_5f0fcd4f81d5d06ad9b4c4c63e3ea51b82d6ae4d0558f1d475229b1121db6f64
+  version: 8

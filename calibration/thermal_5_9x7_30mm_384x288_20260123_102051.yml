@@ -1,0 +1,33 @@
+%YAML:1.0
+---
+imagewidth: 384
+imageheight: 288
+cameramatrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 808.89682625182377, 0., 240.34419030593156, 0.,
+       809.70646341849749, 201.99512824654337, 0., 0., 1. ]
+distcoeffs: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [ -0.19500891544901619, -2.5072445008459825,
+       0.0051054444040106207, -0.0029277751455235534, 19.505157244536775 ]
+patterntype: chessboardinnercorners
+patternsizeinnercorners: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: i
+   data: [ 8, 6 ]
+squaresxy: !!opencv-matrix
+   rows: 2
+   cols: 1
+   dt: i
+   data: [ 9, 7 ]
+squaresize: 30.
+units: mm
+rms: 0.41495788581496718
+meanreprojerror: 0.055742469070059343
+fovxdeg: 26.70528362712064
+fovydeg: 20.168354878299724

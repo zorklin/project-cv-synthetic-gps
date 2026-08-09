@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DetachHead/basedpyright/main/packages/pyright-internal/src/tests/samples/pyrightconfig.schema.json",
+  "include": [
+    "."
+  ],
+  "exclude": [
+    "data",
+    "**/__pycache__"
+  ],
+  "pythonVersion": "3.10",
+  "pythonPlatform": "Linux",
+  "extraPaths": [
+    "/home/fedor/.venvs/project_cv/lib/python3.10/site-packages",
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages",
+    "/usr/local/lib/python3.10/dist-packages",
+    "/usr/lib/python3/dist-packages",
+    "\\\\wsl.localhost\\Ubuntu-22.04\\home\\fedor\\.venvs\\project_cv\\lib\\python3.10\\site-packages",
+    "\\\\wsl.localhost\\Ubuntu-22.04\\opt\\ros\\humble\\lib\\python3.10\\site-packages",
+    "\\\\wsl.localhost\\Ubuntu-22.04\\opt\\ros\\humble\\local\\lib\\python3.10\\dist-packages",
+    "\\\\wsl.localhost\\Ubuntu-22.04\\usr\\local\\lib\\python3.10\\dist-packages",
+    "\\\\wsl.localhost\\Ubuntu-22.04\\usr\\lib\\python3\\dist-packages"
+  ]
+}

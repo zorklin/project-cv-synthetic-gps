@@ -1,0 +1,92 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: mcap
+  duration:
+    nanoseconds: 1283767577607
+  starting_time:
+    nanoseconds_since_epoch: 1780850989877460379
+  message_count: 654089
+  topics_with_message_count:
+    - topic_metadata:
+        name: /device/starlink/raw
+        type: sensor_msgs/msg/NavSatFix
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 142
+    - topic_metadata:
+        name: /device/gps/raw
+        type: sensor_msgs/msg/NavSatFix
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 9202
+    - topic_metadata:
+        name: /camera/image_raw
+        type: sensor_msgs/msg/Image
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 0
+    - topic_metadata:
+        name: /device/xps/fix
+        type: sensor_msgs/msg/NavSatFix
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 5438
+    - topic_metadata:
+        name: /camera/image_raw/compressed
+        type: sensor_msgs/msg/CompressedImage
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 76967
+    - topic_metadata:
+        name: /mavros/global_position/raw/fix
+        type: sensor_msgs/msg/NavSatFix
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 11917
+    - topic_metadata:
+        name: /imu/pure_baro_alt
+        type: std_msgs/msg/Float64
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 11918
+    - topic_metadata:
+        name: /mavros/imu/static_pressure
+        type: sensor_msgs/msg/FluidPressure
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 11918
+    - topic_metadata:
+        name: /mavros/rangefinder/rangefinder
+        type: sensor_msgs/msg/Range
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 11927
+    - topic_metadata:
+        name: /imu/euler
+        type: geometry_msgs/msg/Vector3Stamped
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 256730
+    - topic_metadata:
+        name: /device/xps_sdl
+        type: std_msgs/msg/String
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 1197
+    - topic_metadata:
+        name: /imu/data_raw
+        type: sensor_msgs/msg/Imu
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 256733
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - K2R00005_20260607_194949_0.mcap
+  files:
+    - path: K2R00005_20260607_194949_0.mcap
+      starting_time:
+        nanoseconds_since_epoch: 1780850989877460379
+      duration:
+        nanoseconds: 1283767577607
+      message_count: 654089

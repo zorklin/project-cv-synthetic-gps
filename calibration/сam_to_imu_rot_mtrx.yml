@@ -1,0 +1,14 @@
+%YAML:1.0
+---
+imu: 1
+num_of_cam: 1
+td: -0.069
+extrinsicRotation: !!opencv-matrix  # Tilt Correction
+  rows: 3
+  cols: 3
+  dt: d
+  data: [ 0.0, -1.0, 0.0,
+          1.0, 0.0, 0.0,
+          0.0, 0.0, 1.0 ]
+
+

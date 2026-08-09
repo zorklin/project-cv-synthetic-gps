@@ -1,0 +1,23 @@
+# Large immutable recordings and generated bags
+*.mcap
+
+# Local Python/Jupyter state
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Locally generated preprocessing/fusion artifacts
+artifacts/
+*.npz
+
+# Editor and operating-system noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
