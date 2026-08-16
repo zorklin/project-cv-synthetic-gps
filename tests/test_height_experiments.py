@@ -15,7 +15,7 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from project_cv.height_experiments import (  # noqa: E402
+from project_cv.experiments.height.height_experiments import (  # noqa: E402
     CAUSAL_PREVIOUS_MODE,
     CORRECTED_ALIGNMENT_MODE,
     LEGACY_ALIGNMENT_MODE,

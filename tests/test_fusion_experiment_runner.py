@@ -13,7 +13,7 @@ SRC_ROOT = PROJECT_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from project_cv.fusion_experiment_runner import (  # noqa: E402
+from project_cv.experiments.runners.fusion_experiment_runner import (  # noqa: E402
     BASELINE_CELL_SHA256,
     BASELINE_NOTEBOOK,
     prepare_experiment,

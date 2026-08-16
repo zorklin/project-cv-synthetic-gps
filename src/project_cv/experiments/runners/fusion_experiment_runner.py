@@ -28,9 +28,17 @@ from types import CodeType
 from typing import Any, Final, Literal, Sequence
 
 
-Variant = Literal["legacy_replay", "no_p0_realign", "raw_start_reset"]
+Variant = Literal[
+    "legacy_replay",
+    "no_p0_realign",
+    "raw_start_reset",
+    "raw_start_reset_sl_z12",
+    "raw_start_reset_sl_z8",
+    "raw_start_reset_baro_s3",
+    "raw_start_reset_sl_z12_baro_s3",
+]
 
-BASELINE_NOTEBOOK: Final = Path("notebooks/02_sparse_gps_fusion.ipynb")
+BASELINE_NOTEBOOK: Final = Path("notebooks/pipeline/02_sparse_gps_fusion.ipynb")
 BASELINE_CELL_ID: Final = "gtsam-fusion"
 BASELINE_CELL_SHA256: Final = (
     "f8cbbdb1e2155802e6127734c1773d6e47059affcb81fd9d4a18df9e82054d20"
@@ -304,7 +312,16 @@ def prepare_experiment(
 ) -> PreparedExperiment:
     """Verify and compile one controlled transformation of the fusion cell."""
 
-    if variant not in ("legacy_replay", "no_p0_realign", "raw_start_reset"):
+    _ALL_VARIANTS = (
+        "legacy_replay",
+        "no_p0_realign",
+        "raw_start_reset",
+        "raw_start_reset_sl_z12",
+        "raw_start_reset_sl_z8",
+        "raw_start_reset_baro_s3",
+        "raw_start_reset_sl_z12_baro_s3",
+    )
+    if variant not in _ALL_VARIANTS:
         raise ValueError(f"Unknown fusion experiment variant: {variant}")
 
     notebook = Path(notebook_path).expanduser().resolve()
@@ -317,6 +334,21 @@ def prepare_experiment(
         _replace_top_level_constant(tree, name="BARO_ALIGN_TO_P0", value=False)
         transformations.append("BARO_ALIGN_TO_P0: True -> False")
 
+    # --- Sigma tuning for new variants ---
+    _uses_raw_start_reset = variant.startswith("raw_start_reset")
+
+    if variant in ("raw_start_reset_sl_z12", "raw_start_reset_sl_z12_baro_s3"):
+        _replace_top_level_constant(tree, name="STARLINK_Z_SIGMA_M", value=12.0)
+        transformations.append("STARLINK_Z_SIGMA_M: 100.0 -> 12.0")
+
+    if variant == "raw_start_reset_sl_z8":
+        _replace_top_level_constant(tree, name="STARLINK_Z_SIGMA_M", value=8.0)
+        transformations.append("STARLINK_Z_SIGMA_M: 100.0 -> 8.0")
+
+    if variant in ("raw_start_reset_baro_s3", "raw_start_reset_sl_z12_baro_s3"):
+        _replace_top_level_constant(tree, name="BARO_Z_SIGMA_M", value=3.0)
+        transformations.append("BARO_Z_SIGMA_M: 1.5 -> 3.0")
+
     alignment_indices = [
         index for index, statement in enumerate(tree.body) if _is_alignment_block(statement)
     ]
@@ -328,7 +360,7 @@ def prepare_experiment(
 
     index = alignment_indices[0]
     save_statements = ast.parse(_SAVE_BARO_GRAPH_SOURCE).body
-    if variant == "raw_start_reset":
+    if _uses_raw_start_reset:
         corrected_statements = ast.parse(_RAW_START_RESET_SOURCE).body
         tree.body[index : index + 1] = corrected_statements + save_statements
         transformations.append(
@@ -451,7 +483,15 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--variant",
         required=True,
-        choices=("legacy_replay", "no_p0_realign", "raw_start_reset"),
+        choices=(
+            "legacy_replay",
+            "no_p0_realign",
+            "raw_start_reset",
+            "raw_start_reset_sl_z12",
+            "raw_start_reset_sl_z8",
+            "raw_start_reset_baro_s3",
+            "raw_start_reset_sl_z12_baro_s3",
+        ),
     )
     parser.add_argument("--source-root", type=Path)
     parser.add_argument("--artifacts-root", type=Path)

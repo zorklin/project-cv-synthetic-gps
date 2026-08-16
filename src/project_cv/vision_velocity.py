@@ -1,7 +1,7 @@
 """Legacy-compatible raw MCAP -> optical-flow velocity preprocessing.
 
 This module is a structured port of the preprocessing cells from
-``opticalflow_sparse_noised_gps_fusion_v1(1).ipynb``.  It intentionally
+``notebooks/reference/teacher_colab_reference.ipynb``.  It intentionally
 preserves the baseline mathematics and constants so that a generated bag can
 first be compared with the teacher-provided reference.  Suspect assumptions
 are documented in :data:`LEGACY_BASELINE_NOTES`; they are not silently fixed.
